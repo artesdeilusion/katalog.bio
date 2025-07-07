@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { ArrowBigLeft, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 export default function SectionPage({ user, categories, products, mainCategory, sub1Category, sub1Categories, sub2Categories = [] }: any) {
   const router = useRouter();

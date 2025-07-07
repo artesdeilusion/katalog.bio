@@ -1,14 +1,12 @@
 import { useState } from "react"
 import { GalleryVerticalEnd, ArrowLeft } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Link from "next/link"
 import { fetchSignInMethodsForEmail, sendPasswordResetEmail } from "firebase/auth"
 import { auth } from "../firebase"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card"
-import Head from "next/head"
+ import Head from "next/head"
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("")

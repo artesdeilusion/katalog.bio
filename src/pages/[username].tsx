@@ -1,14 +1,13 @@
 import { GetServerSideProps } from "next";
-import { doc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
+import {   collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { Filter, FilterIcon, Home, Rows2, SlidersHorizontal, SlidersHorizontalIcon } from "lucide-react";
+import {  Home, Rows2, SlidersHorizontalIcon } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem } from "../components/ui/carousel";
 import { Card, CardContent } from "../components/ui/card";
-import Footer from "@/components/footer";
 // import { trackEvent } from "../utils/analytics";
 
 export default function PublicProfile({ user, categories, products }: { user: any, categories: any[], products: any[] }) {

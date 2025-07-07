@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { ArrowLeft } from "lucide-react";
-// import { trackEvent } from "../../../utils/analytics";
 
 export default function ProductDetail({ user, product, categories }: { user: { customURL: string; storeName?: string; displayName?: string; phoneNumber?: string; actionButtonTitle?: string; actionButtonLink?: string; actionButtonColor?: string; uid: string }, product: { id: string; name: string; description?: string; imageUrls?: string[]; imageUrl?: string; customLink?: string; mainCategoryId?: string; subCategory1Id?: string; subCategory2Id?: string; showPrice?: boolean; price?: number }, categories: { id: string; name: string }[] }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

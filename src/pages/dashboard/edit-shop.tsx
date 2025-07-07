@@ -8,10 +8,6 @@ import { Button } from "../../components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
-import { Select } from "../../components/ui/select";
-import { useAuth } from "../_app";
-import Link from "next/link";
-import { ArrowLeft, Upload, X, Save, Store, Palette, Settings } from "lucide-react";
 import Head from "next/head";
 
 const STORE_CATEGORIES = [

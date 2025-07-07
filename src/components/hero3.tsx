@@ -1,5 +1,4 @@
 import { ArrowRight, Star } from "lucide-react";
-import "@/styles/globals.css"
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { useState } from "react";
 import { useRouter } from "next/router";

@@ -4,7 +4,7 @@ import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "../../firebase";
 import { Button } from "../../components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "../../components/ui/card";
-import { getUserAnalytics, getProductAnalytics, getAnonymousAnalytics } from "../../utils/analytics";
+import { getUserAnalytics, getAnonymousAnalytics } from "../../utils/analytics";
 import { collection, query, where, getDocs, orderBy, limit } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useAuth } from "../_app";

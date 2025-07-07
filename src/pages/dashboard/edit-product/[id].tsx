@@ -9,9 +9,6 @@ import { Card, CardHeader, CardTitle, CardContent } from "../../../components/ui
 import { Input } from "../../../components/ui/input";
 import { Label } from "../../../components/ui/label";
 import { Switch } from "../../../components/ui/switch";
-import { useAuth } from "../../_app";
-import Link from "next/link";
-import { ArrowLeft, Upload, X, Save, Plus, Minus, Image as ImageIcon, Link as LinkIcon, Tag, DollarSign, Star } from "lucide-react";
 import Head from "next/head";
 
 

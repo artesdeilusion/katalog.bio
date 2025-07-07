@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "./_app";
 import Head from "next/head";
-import "@/styles/globals.css"
 import { Feature43 } from "@/components/feature43";
 import FAQ from "@/components/faq";
 import { Hero3 } from "@/components/hero3";

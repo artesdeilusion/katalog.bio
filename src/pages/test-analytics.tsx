@@ -4,12 +4,6 @@ import { auth } from "../firebase";
 import { onAuthStateChanged, User, signInAnonymously } from "firebase/auth";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
-import { useRouter } from "next/router";
-import { collection, addDoc, query, where, getDocs, orderBy, limit } from "firebase/firestore";
-import { auth as firestoreAuth, db } from "../firebase";
-import { useAuth } from "./_app";
-import Link from "next/link";
-import { ArrowLeft, BarChart3, Eye, MousePointer, TrendingUp, Users, ShoppingCart } from "lucide-react";
 import Head from "next/head";
 
 export default function TestAnalytics() {

@@ -1,6 +1,5 @@
 import { ArrowRight } from "lucide-react";
- import "@/styles/globals.css"
- import { useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/firebase"; // adjust path to your Firebase config

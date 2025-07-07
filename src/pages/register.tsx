@@ -1,7 +1,5 @@
-import { GalleryVerticalEnd } from "lucide-react";
-import { RegisterForm } from "@/components/register-form";
-import { Card, CardContent } from "@/components/ui/card";
-import Link from "next/link";
+ import { RegisterForm } from "@/components/register-form";
+ import Link from "next/link";
 import Head from "next/head";
 
 export default function RegisterPage() {

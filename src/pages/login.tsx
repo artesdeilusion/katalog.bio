@@ -1,7 +1,5 @@
-import { GalleryVerticalEnd } from "lucide-react"
-import { LoginForm } from "@/components/login-form"
- import { Card, CardContent } from "@/components/ui/card"
-import Link from "next/link"
+ import { LoginForm } from "@/components/login-form"
+ import Link from "next/link"
 import Head from "next/head"
 
 export default function LoginPage() {
