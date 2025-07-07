@@ -15,7 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { DialogClose } from "@radix-ui/react-dialog";
+
 
 interface CustomURLDialogProps {
   open: boolean;
@@ -58,8 +58,9 @@ export function CustomURLDialog({ open, onClose }: CustomURLDialogProps) {
         onClose();
         router.reload();
       }
-    } catch (err: any) {
-      setError(err.message || "An error occurred while saving your custom URL");
+    } catch (err: unknown) {
+      const error = err as Error;
+      setError(error.message || "An error occurred while saving your custom URL");
     }
     
     setLoading(false);

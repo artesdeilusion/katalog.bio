@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/router";
 import { User } from "firebase/auth";
 import { doc, updateDoc, getDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -77,12 +76,12 @@ export function StoreSetupForm({ user, onComplete }: StoreSetupFormProps) {
   }, [user.uid]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value, type, checked, files } = e.target as any;
+    const { name, value, type, checked, files } = e.target as HTMLInputElement & { files: FileList | null };
     
     if (type === "checkbox") {
       setForm(f => ({ ...f, [name]: checked }));
     } else if (type === "file") {
-      setForm(f => ({ ...f, storeLogo: files[0] }));
+      setForm(f => ({ ...f, storeLogo: files?.[0] || null }));
     } else {
       setForm(f => ({ ...f, [name]: value }));
       
@@ -159,8 +158,9 @@ export function StoreSetupForm({ user, onComplete }: StoreSetupFormProps) {
       });
       
       onComplete();
-    } catch (err: any) {
-      setError(err.message || "Error saving store information.");
+    } catch (err: unknown) {
+      const error = err as Error;
+      setError(error.message || "Error saving store information.");
     }
     setSubmitting(false);
   };
@@ -171,7 +171,7 @@ export function StoreSetupForm({ user, onComplete }: StoreSetupFormProps) {
         <CardHeader className="text-center">
           <CardTitle className="text-foreground text-2xl">Welcome to katalog.bio! 🎉</CardTitle>
           <p className="text-muted-foreground mt-2">
-            Let's set up your store. This will only take a few minutes.
+            Let&apos;s set up your store. This will only take a few minutes.
           </p>
           
           {/* Progress Indicator */}

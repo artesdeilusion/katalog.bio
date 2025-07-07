@@ -5,21 +5,12 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { ArrowLeft, Home, Share2, Heart, ShoppingCart, Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 // import { trackEvent } from "../../../utils/analytics";
 
-export default function ProductDetail({ user, product, categories }: { user: any, product: any, categories: any[] }) {
+export default function ProductDetail({ user, product, categories }: { user: { customURL: string; storeName?: string; displayName?: string; phoneNumber?: string; actionButtonTitle?: string; actionButtonLink?: string; actionButtonColor?: string; uid: string }, product: { id: string; name: string; description?: string; imageUrls?: string[]; imageUrl?: string; customLink?: string; mainCategoryId?: string; subCategory1Id?: string; subCategory2Id?: string; showPrice?: boolean; price?: number }, categories: { id: string; name: string }[] }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const router = useRouter();
-
-  if (!user || !product) {
-    return <div className="text-center mt-20"><h2>Product not found</h2></div>;
-  }
-
-  // Get category names
-  const mainCategory = categories.find(c => c.id === product.mainCategoryId);
-  const sub1Category = categories.find(c => c.id === product.subCategory1Id);
-  const sub2Category = categories.find(c => c.id === product.subCategory2Id);
 
   // Get all images (support both new imageUrls array and old imageUrl)
   const allImages = product.imageUrls && product.imageUrls.length > 0 
@@ -34,7 +25,11 @@ export default function ProductDetail({ user, product, categories }: { user: any
       // Temporarily disabled analytics to fix product page
       console.log('Product view tracked (analytics disabled):', product.name);
     }
-  }, [user?.uid, product?.id, categories, allImages.length, router.asPath]);
+  }, [product?.id, product?.name]);
+
+  if (!user || !product) {
+    return <div className="text-center mt-20"><h2>Product not found</h2></div>;
+  }
 
   const handleOrder = () => {
     const message = `Merhaba, ${product.name} hakkında bilgi almak istiyorum.`;
@@ -259,8 +254,8 @@ export default function ProductDetail({ user, product, categories }: { user: any
                   if (!product.customLink) return 'Sipariş Ver';
                   const link = product.customLink.toLowerCase();
                   if (link.includes('wa.me') || link.includes('whatsapp')) return 'WhatsApp ile Sipariş Ver';
-                  if (link.includes('yemeksepeti')) return 'Yemeksepeti\'den Sipariş Ver';
-                  if (link.includes('trendyol')) return 'Trendyol\'dan Sipariş Ver';
+                  if (link.includes('yemeksepeti')) return 'Yemeksepeti&apos;den Sipariş Ver';
+                  if (link.includes('trendyol')) return 'Trendyol&apos;dan Sipariş Ver';
                   if (link.includes('t.me') || link.includes('telegram')) return 'Telegram ile İletişim';
                   if (link.includes('mailto:') || (link.includes('@') && link.includes('.'))) return 'Email ile İletişim';
                   return 'Websitesini Ziyaret Et';
@@ -270,7 +265,7 @@ export default function ProductDetail({ user, product, categories }: { user: any
               {/* Additional Info */}
               <div className="pt-4 border-t border-gray-200">
                 <div className="text-sm text-gray-500">
-                  <p>Bu ürün hakkında daha fazla bilgi almak için WhatsApp'tan mesaj gönderin.</p>
+                  <p>Bu ürün hakkında daha fazla bilgi almak için WhatsApp&apos;tan mesaj gönderin.</p>
                 </div>
               </div>
             </div>
@@ -285,7 +280,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { username, id } = context.params as { username: string; id: string };
   let user = null;
   let product = null;
-  let categories: any[] = [];
+  let categories: { id: string; name: string; userId: string; createdAt?: string; updatedAt?: string }[] = [];
 
   if (username && id) {
     // Find user by customURL
@@ -326,12 +321,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       const catQuery = query(collection(db, "categories"), where("userId", "==", user.uid));
       const catSnap = await getDocs(catQuery);
       categories = catSnap.docs.map(doc => {
-        const data = doc.data();
+        const data = doc.data() as { name: string; userId: string; createdAt?: any; updatedAt?: any };
         return {
           id: doc.id,
-          ...data,
-          createdAt: data.createdAt ? data.createdAt.toDate().toISOString() : null,
-          updatedAt: data.updatedAt ? data.updatedAt.toDate().toISOString() : null,
+          name: data.name,
+          userId: data.userId,
+          createdAt: data.createdAt ? data.createdAt.toDate().toISOString() : undefined,
+          updatedAt: data.updatedAt ? data.updatedAt.toDate().toISOString() : undefined,
         };
       });
     }

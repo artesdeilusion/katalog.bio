@@ -8,7 +8,7 @@ const faqs: { q: string; a: string }[] = [
     },
     {
       q: "Nasıl başlayabilirim?",
-      a: "Ücretsiz hesap oluşturun, ürünlerinizi ekleyin ve size özel katalog linkinizi alın. Bu linki Instagram bio'nuzda paylaşabilir veya QR kod olarak basabilirsiniz."
+      a: "Ücretsiz hesap oluşturun, ürünlerinizi ekleyin ve size özel katalog linkinizi alın. Bu linki Instagram bio&apos;nuzda paylaşabilir veya QR kod olarak basabilirsiniz."
     },
     {
       q: "Ücretli mi?",
@@ -16,7 +16,7 @@ const faqs: { q: string; a: string }[] = [
     },
     {
       q: "Müşteriler nasıl sipariş verir?",
-      a: "Her ürün kartında otomatik olarak WhatsApp sipariş butonu bulunur. Müşteriler bu butona tıklayarak direkt WhatsApp'tan size mesaj atabilir."
+      a: "Her ürün kartında otomatik olarak WhatsApp sipariş butonu bulunur. Müşteriler bu butona tıklayarak direkt WhatsApp&apos;tan size mesaj atabilir."
     },
     {
       q: "QR kod nasıl oluşturulur?",

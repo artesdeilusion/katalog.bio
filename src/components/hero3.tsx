@@ -1,7 +1,6 @@
-import { ArrowDownRight, ArrowLeft, ArrowRight, Star } from "lucide-react";
+import { ArrowRight, Star } from "lucide-react";
 import "@/styles/globals.css"
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -32,17 +31,8 @@ interface Hero3Props {
 
 const Hero3 = ({
   heading = "Dijital vitrin senin kontrolünde",
-  description = "Ürünlerini, menülerini, QR kodlarını, linklerini bir araya getir. WhatsApp'tan sipariş al, Instagram'dan yönlendir, dijitale geç.",
-  buttons = {
-    primary: {
-      text: "Sign Up",
-      url: "https://www.shadcnblocks.com",
-    },
-    secondary: {
-      text: "Get Started",
-      url: "https://www.shadcnblocks.com",
-    },
-  },
+  description = "Ürünlerini, menülerini, QR kodlarını, linklerini bir araya getir. WhatsApp&apos;tan sipariş al, Instagram&apos;dan yönlendir, dijitale geç.",
+
   reviews = {
     count: 200,
     rating: 5.0,
@@ -152,7 +142,7 @@ const Hero3 = ({
           </form>
           {error && <div className="text-white mt-1 bg-red-500 px-3 py-1 rounded-lg mb-2">{error}</div>}
 
-          <div className="text-black text-sm mb-6">QR kod bas, Instagram bio'ya koy, Twitter'da paylaş...</div>
+          <div className="text-black text-sm mb-6">QR kod bas, Instagram bio&apos;ya koy, Twitter&apos;da paylaş...</div>
 
           <div className="mb-12 flex w-fit flex-col items-center gap-4 sm:flex-row">
             <span className="inline-flex items-center -space-x-4">

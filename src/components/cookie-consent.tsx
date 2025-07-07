@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from './ui/button';
-import { X, Cookie, Settings } from 'lucide-react';
+import { Settings } from 'lucide-react';
 
 interface CookieConsentProps {
   onAccept: () => void;

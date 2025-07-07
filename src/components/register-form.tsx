@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import Link from "next/link";
 
 // Username validation and formatting function
 function validateAndFormatUsername(rawValue: string): string | null {
@@ -81,8 +82,9 @@ export function RegisterForm({ className, usernameProp = "" }: { className?: str
         createdAt: new Date(),
       });
       router.push("/dashboard");
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const error = err as Error;
+      setError(error.message);
     }
     setSubmitting(false);
   };
@@ -125,8 +127,9 @@ export function RegisterForm({ className, usernameProp = "" }: { className?: str
         createdAt: new Date(),
       });
       router.push("/dashboard");
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const error = err as Error;
+      setError(error.message);
     }
     setGoogleLoading(false);
   };
@@ -199,9 +202,9 @@ export function RegisterForm({ className, usernameProp = "" }: { className?: str
       </div>
       <div className="text-center text-sm">
         Already have an account?{" "}
-        <a href="/login" className="underline underline-offset-4">
+        <Link href="/login" className="underline underline-offset-4">
           Login
-        </a>
+        </Link>
       </div>
     </form>
   );

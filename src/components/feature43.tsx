@@ -1,13 +1,7 @@
 import {
-  BatteryCharging,
   FolderKanban,
-  GitPullRequest,
-  IdCard,
-  Layers,
   Presentation,
-  RadioTower,
   ShoppingBag,
-  SquareKanban,
   UserCog,
   UtensilsCrossed,
   WandSparkles,

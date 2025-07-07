@@ -29,7 +29,7 @@ export function LoginForm({
     }
   }, [user, loading, router]);
 
-  const ensureUserDocument = async (user: any) => {
+  const ensureUserDocument = async (user: { uid: string; email: string | null; displayName: string | null; photoURL: string | null }) => {
     try {
       const userDocRef = doc(db, "users", user.uid);
       const userDoc = await getDoc(userDocRef);
@@ -57,8 +57,9 @@ export function LoginForm({
       const result = await signInWithEmailAndPassword(auth, email, password);
       await ensureUserDocument(result.user);
       router.push("/dashboard");
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const error = err as Error;
+      setError(error.message);
     }
     setSubmitting(false);
   };
@@ -70,8 +71,9 @@ export function LoginForm({
       const result = await signInWithPopup(auth, googleProvider);
       await ensureUserDocument(result.user);
       router.push("/dashboard");
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const error = err as Error;
+      setError(error.message);
     }
     setGoogleLoading(false);
   };
@@ -143,9 +145,9 @@ export function LoginForm({
       </div>
       <div className="text-center text-sm">
         Don&apos;t have an account?{" "}
-        <a href="/register" className="underline underline-offset-4">
+        <Link href="/register" className="underline underline-offset-4">
           Sign up
-        </a>
+        </Link>
       </div>
     </form>
   )
