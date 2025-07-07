@@ -1,0 +1,39 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users can read/write their own data
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Categories - users can manage their own categories
+    match /categories/{categoryId} {
+      allow read, write: if request.auth != null && resource.data.userId == request.auth.uid;
+      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+    }
+    
+    // Products - users can manage their own products
+    match /products/{productId} {
+      allow read, write: if request.auth != null && resource.data.userId == request.auth.uid;
+      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+    }
+    
+    // Analytics - allow anonymous users to write analytics data
+    match /analytics/{analyticsId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null; // Allow authenticated users (including anonymous) to create analytics
+      allow update, delete: if request.auth != null;
+    }
+    
+    // User Analytics - users can read their own analytics
+    match /userAnalytics/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Product Analytics - users can read their own product analytics
+    match /productAnalytics/{productId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+    }
+  }
+} 
